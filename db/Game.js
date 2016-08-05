@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-
+//change
 
 const gameSchema = Schema({
   currPlayer: {type: Boolean, default: false},

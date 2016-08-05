@@ -7,8 +7,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
 const api = require('./api/index');
-/* eslint-disable no-console */
-//const fs = require('fs');
+
 //const SocketIo = ('socket.io';
 
 
