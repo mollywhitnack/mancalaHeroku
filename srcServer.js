@@ -49,7 +49,7 @@ const io = require('socket.io')(server);
 
 //console.log('io', io);
 //console.log("\nserver:", server)
-let connections;
+const connections;
 
 io.on('connection', function(socket) {
 
