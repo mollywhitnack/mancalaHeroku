@@ -43,8 +43,8 @@ const io = require('socket.io')(server);
 
 
 //console.log('io', io);
-//console.log("\nserver:", server)
-const connections;
+//console.log("\nserver:", server)av
+var connections = 0;
 
 io.on('connection', function(socket) {
 

@@ -4,7 +4,7 @@
   "description": "",
   "main": "srcServer.js",
   "scripts": {
-    "start": "srcServer.js"
+    "start": "node srcServer.js"
   },
   "keywords": [],
   "author": "",
