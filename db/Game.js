@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-let Schema = mongoose.Schema
+const Schema = mongoose.Schema
 
 
 const gameSchema = Schema({
@@ -9,5 +9,5 @@ const gameSchema = Schema({
   player1: {type: String, defualt: 'player 2'},
 });
 
-let Game  = mongoose.model('Game', gameSchema);
+const Game  = mongoose.model('Game', gameSchema);
 module.exports = Game;
