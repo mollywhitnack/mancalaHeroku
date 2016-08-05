@@ -25,8 +25,10 @@ app.use(cookieParser());
 
 app.use('/api', api)
 
+app.use(express.static(path.join(__dirname, 'client')));
+
 app.get('*', function(req, res) {
-  res.sendFile(path.join( __dirname, '../src/index.html'));
+  res.sendFile(path.join( __dirname, './client/index.html'));
 });
 
 const server = app.listen(port, function(err) {
@@ -48,7 +50,7 @@ var connections = 0;
 
 io.on('connection', function(socket) {
 
-    console.log('socket connected:', socket);
+    //console.log('socket connected:', socket);
      console.log(`Clients connected: ${++connections}`);
 
     socket.join('room');
