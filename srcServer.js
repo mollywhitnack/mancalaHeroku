@@ -10,7 +10,6 @@ const api = require('./api/index');
 
 //const SocketIo = ('socket.io';
 
-
 const port = process.env.PORT || 3000;
 const app = express();
 
@@ -18,9 +17,6 @@ const app = express();
 const mongoose = require('mongoose');
 
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/mancala');
-
-
-
 
 app.use(logger('dev'));
 app.use(bodyParser.json());

@@ -12783,7 +12783,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".inlb{\n  display: inline-block;\n}\n\n.ballspan\n{\n  display: inline-block;\n  vertical-align: middle;\n}\n\n.tablebackground{\n  background-color: none;\n  width: 100%;\n /* background: url('http://preview.turbosquid.com/Preview/2014/07/10__19_08_25/CartoonWoodTable.5.png140b042e-ef99-4d6e-81a1-321babb0087cOriginal.jpg') no-repeat center center fixed; \n  -webkit-background-size: cover;\n  -moz-background-size: cover;\n  -o-background-size: cover;\n  background-size: cover;*/\n    /*background-image: url('http://preview.turbosquid.com/Preview/2014/07/10__19_08_25/CartoonWoodTable.5.png140b042e-ef99-4d6e-81a1-321babb0087cOriginal.jpg')*/\n}\n\n.stoneNum{\n  /*position: absolute;\n  padding-left: 5px;*/\n  /*top:60px;*/\n  display: none;\n}\n\n.stoneNum2{\n  display: none;\n  /*position: absolute;\n  padding-left: 23px;*/\n  /*top:160px;*/\n}\n\n\n.hoverHole:hover{\n  background-color: #80654d;\n}\n\n.gameContainer{\n  position: relative;\n  left: 14%;\n  -moz-transition: all 1s ease;\n  -webkit-transition: all 1s ease;\n  -o-transition: all 1s ease;\n  transition: all 1s ease;\n  transition-delay: 400ms;\n}\n\n.blueball {\n  display: inline-block;\n  width: 15px;\n  height: 15px;\n  border-radius: 50%;\n  margin: 0px;\n  position: relative;\n   z-index: 0;\n  background: radial-gradient(circle at 50% 120%, #81e8f6, #76deef 12%, #055194 70%, #062745 100%);\n}\n.blueball:before {\n  content: \"\";\n  position: absolute;\n  display: inline-block;\n  vertical-align: middle;\n  top: 1%;\n  left: 5%;\n  width: 90%;\n  height: 90%;\n  border-radius: 50%;\n  z-index: 0;\n  background: radial-gradient(circle at 50% 0px, #ffffff, rgba(255, 255, 255, 0) 58%);\n  -webkit-filter: blur(5px);\n  z-index: 2;\n}\n\n.blueball.shadow {\nposition: absolute;\nwidth: 100%;\nheight: 100%;\nz-index: 1;\nbackground: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0) 50%);\n-webkit-transform: rotateX(90deg) translateZ(-150px);\n-moz-transform: rotateX(90deg) translateZ(-150px);\n-ms-transform: rotateX(90deg) translateZ(-150px);\n-o-transform: rotateX(90deg) translateZ(-150px);\ntransform: rotateX(90deg) translateZ(-150px);\nz-index: -1;\n}\n\n\n.redball {\n  display: inline-block;\n  width: 25px;\n  height: 25px;\n  margin: 0;\n  border-radius: 50%;\n  position: relative;\n  background: radial-gradient(circle at 50% 120%, #f68383 , #ef7676, 10%, #940505 80%, #460606 100%);\n}\n.redball:before {\n  content: \"\";\n  position: absolute;\n  top: 1%;\n  left: 5%;\n  width: 90%;\n  height: 90%;\n  border-radius: 50%;\n  background: radial-gradient(circle at 50% 0px, #ffffff, rgba(255, 255, 255, 0) 58%);\n  -webkit-filter: blur(5px);\n  z-index: 2;\n}\n\n.background{\n  background-image: url(" + __webpack_require__(28) + ")\n}\n\n.redball.shadow {\nposition: absolute;\nwidth: 100%;\nheight: 100%;\nbackground: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0) 50%);\n-webkit-transform: rotateX(90deg) translateZ(-150px);\n-moz-transform: rotateX(90deg) translateZ(-150px);\n-ms-transform: rotateX(90deg) translateZ(-150px);\n-o-transform: rotateX(90deg) translateZ(-150px);\ntransform: rotateX(90deg) translateZ(-150px);\nz-index: -1;\n}\n\n.stage {\n  width: 300px;\n  height: 300px;\n  display: inline-block;\n  margin: 20px;\n  -webkit-perspective: 1200px;\n  -moz-perspective: 1200px;\n  -ms-perspective: 1200px;\n  -o-perspective: 1200px;\n  perspective: 1200px;\n  -webkit-perspective-origin: 50% 50%;\n  -moz-perspective-origin: 50% 50%;\n  -ms-perspective-origin: 50% 50%;\n  -o-perspective-origin: 50% 50%;\n  perspective-origin: 50% 50%;\n}\nbody {\n  width: 300px;\n  margin: 20px auto;\n  background: linear-gradient(to bottom, rgba(100, 100, 100, 0.2) 0%, rgba(255, 255, 255, 0.5) 40%, #ffffff 100%);\n  background-repeat: no-repeat;\n}", ""]);
+	exports.push([module.id, ".inlb{\n  display: inline-block;\n}\n\n.ballspan\n{\n  display: inline-block;\n  vertical-align: middle;\n}\n\n.tablebackground{\n  background-color: none;\n  width: 100%;\n  position: absolute;\n  left:10px; /* background: url('http://preview.turbosquid.com/Preview/2014/07/10__19_08_25/CartoonWoodTable.5.png140b042e-ef99-4d6e-81a1-321babb0087cOriginal.jpg') no-repeat center center fixed; \n  -webkit-background-size: cover;\n  -moz-background-size: cover;\n  -o-background-size: cover;\n  background-size: cover;*/\n    /*background-image: url('http://preview.turbosquid.com/Preview/2014/07/10__19_08_25/CartoonWoodTable.5.png140b042e-ef99-4d6e-81a1-321babb0087cOriginal.jpg')*/\n}\n\n.font{\n  font-family: Papyrus, fantasy;\n  font-size: 20px;\n  font-style: normal;\n  font-variant: normal;\n  font-weight: 400;\n  line-height: 40px;\n}\n\nh1 {\n  font-family: Papyrus, fantasy;\n  font-size: 74px;\n  font-style: normal;\n  font-variant: normal;\n  font-weight: 700;\n  line-height: 26.4px;\n}\n\nh2{\n  font-family: Papyrus, fantasy;\n  font-size: 44px;\n  font-style: normal;\n  font-variant: normal;\n  font-weight: 700;\n  line-height: 26.4px;\n}\n\n.title2{\n  margin-top: 50%;\n}\n\n.playerForm{\n  margin-top: 35%;\n}\n\n.title{\n  position: absolute;\n  left: 50px;\n}\n\n.name{\n  margin-top: 80px;\n}\n\n.startbtn{\n  margin-top: 5%;\n}\n\n.newgamebtn{\n  margin-top: 125px;\n}\n.stoneNum{\n  /*position: absolute;\n  padding-left: 5px;*/\n  /*top:60px;*/\n  display: none;\n}\n\n.stoneNum2{\n  display: none;\n  /*position: absolute;\n  padding-left: 23px;*/\n  /*top:160px;*/\n}\n\n\n.hoverHole:hover{\n  background-color: #80654d;\n}\n\n.fullwidth{\n  height: 900px;\n  width:900px;\n  position: absolute;\n  left: 20%;\n  background-color: none;\n}\n\n.gameContainer{\n  margin-top: 27%;\n  margin-left: 0%;\n  text-align: center;\n  -moz-transition: all 1s ease;\n  -webkit-transition: all 1s ease;\n  -o-transition: all 1s ease;\n  transition: all 1s ease;\n  transition-delay: 400ms;\n}\n\n.blueball {\n  display: inline-block;\n  width: 15px;\n  height: 15px;\n  border-radius: 50%;\n  margin: 0px;\n  position: relative;\n   z-index: 0;\n  background: radial-gradient(circle at 50% 120%, #81e8f6, #76deef 12%, #055194 70%, #062745 100%);\n}\n.blueball:before {\n  content: \"\";\n  position: absolute;\n  display: inline-block;\n  vertical-align: middle;\n  top: 1%;\n  left: 5%;\n  width: 90%;\n  height: 90%;\n  border-radius: 50%;\n  z-index: 0;\n  background: radial-gradient(circle at 50% 0px, #ffffff, rgba(255, 255, 255, 0) 58%);\n  -webkit-filter: blur(5px);\n  z-index: 2;\n}\n\n.blueball.shadow {\nposition: absolute;\nwidth: 100%;\nheight: 100%;\nz-index: 1;\nbackground: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0) 50%);\n-webkit-transform: rotateX(90deg) translateZ(-150px);\n-moz-transform: rotateX(90deg) translateZ(-150px);\n-ms-transform: rotateX(90deg) translateZ(-150px);\n-o-transform: rotateX(90deg) translateZ(-150px);\ntransform: rotateX(90deg) translateZ(-150px);\nz-index: -1;\n}\n\n\n.redball {\n  display: inline-block;\n  width: 25px;\n  height: 25px;\n  margin: 0;\n  border-radius: 50%;\n  position: relative;\n  background: radial-gradient(circle at 50% 120%, #f68383 , #ef7676, 10%, #940505 80%, #460606 100%);\n}\n.redball:before {\n  content: \"\";\n  position: absolute;\n  top: 1%;\n  left: 5%;\n  width: 90%;\n  height: 90%;\n  border-radius: 50%;\n  background: radial-gradient(circle at 50% 0px, #ffffff, rgba(255, 255, 255, 0) 58%);\n  -webkit-filter: blur(5px);\n  z-index: 2;\n}\n\n.background{\n  background-image: url(" + __webpack_require__(28) + ")\n}\n\n.redball.shadow {\nposition: absolute;\nwidth: 100%;\nheight: 100%;\nbackground: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0) 50%);\n-webkit-transform: rotateX(90deg) translateZ(-150px);\n-moz-transform: rotateX(90deg) translateZ(-150px);\n-ms-transform: rotateX(90deg) translateZ(-150px);\n-o-transform: rotateX(90deg) translateZ(-150px);\ntransform: rotateX(90deg) translateZ(-150px);\nz-index: -1;\n}\n\n.stage {\n  width: 300px;\n  height: 300px;\n  display: inline-block;\n  margin: 20px;\n  -webkit-perspective: 1200px;\n  -moz-perspective: 1200px;\n  -ms-perspective: 1200px;\n  -o-perspective: 1200px;\n  perspective: 1200px;\n  -webkit-perspective-origin: 50% 50%;\n  -moz-perspective-origin: 50% 50%;\n  -ms-perspective-origin: 50% 50%;\n  -o-perspective-origin: 50% 50%;\n  perspective-origin: 50% 50%;\n}\nbody {\n  width: 300px;\n  margin: 20px auto;\n  background: linear-gradient(to bottom, rgba(100, 100, 100, 0.2) 0%, rgba(255, 255, 255, 0.5) 40%, #ffffff 100%);\n  background-repeat: no-repeat;\n}", ""]);
 	
 	// exports
 
@@ -39946,16 +39946,16 @@
 	        'div',
 	        null,
 	        _react2.default.createElement(
-	          'h1',
-	          null,
-	          'Mancala'
-	        ),
-	        _react2.default.createElement(
 	          'div',
-	          null,
+	          { className: ' text-center' },
+	          _react2.default.createElement(
+	            'h1',
+	            { className: 'title2' },
+	            'Mancala'
+	          ),
 	          _react2.default.createElement(
 	            'form',
-	            null,
+	            { className: 'playerForm font' },
 	            _react2.default.createElement(
 	              'div',
 	              { className: 'form-group' },
@@ -39992,7 +39992,7 @@
 	            ),
 	            _react2.default.createElement(
 	              'button',
-	              { className: 'btn btn-primary', onClick: this.initializeBoard },
+	              { className: 'btn btn-success font startbtn', onClick: this.initializeBoard },
 	              ' New Game'
 	            )
 	          )
@@ -40108,8 +40108,8 @@
 	    }
 	  }, {
 	    key: 'newGame',
-	    value: function newGame(event) {
-	      event.preventDefault();
+	    value: function newGame() {
+	      //event.preventDefault();
 	      _GameBoardActions2.default.deleteGameBoard(this.props.gameboardID);
 	      window.location = '/';
 	    }
@@ -40207,13 +40207,16 @@
 	              var winner = 'player 0';
 	              console.log("---------winner: ", winner);
 	              console.log("---------score: ", stones[0]);
+	              alert(this.state.gameboard.player0, 'wins with ', stones[7], 'stones');
 	              stones = [0, 4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4];
 	              break;
 	            } else if (row1Count === 0) {
 	              var _winner = 'player 1';
 	              console.log("---------winner: ", _winner);
 	              console.log("---------score: ", stones[7]);
+	              alert(this.state.gameboard.player1, 'wins with ', stones[0], 'stones');
 	              stones = [0, 4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4];
+	
 	              break;
 	            }
 	            index = (index + 13) % 14;
@@ -40251,7 +40254,7 @@
 	
 	        var rotate90 = {
 	          position: 'absolute',
-	          top: '400px',
+	          top: '10px',
 	          WebkitTransform: 'rotate(90deg)',
 	          MozTransform: 'rotate(90deg)',
 	          OTransform: 'rotate(90deg)',
@@ -40261,7 +40264,7 @@
 	
 	        var rotateN90 = {
 	          position: 'absolute',
-	          top: '400px',
+	          top: '10px',
 	          WebkitTransform: 'rotate(-90deg)',
 	          MozTransform: 'rotate(-90deg)',
 	          OTransform: 'rotate(-90deg)',
@@ -40403,19 +40406,19 @@
 	          'div',
 	          null,
 	          _react2.default.createElement(
+	            'button',
+	            { className: 'btn btn-warning title newgamebtn font', onClick: this.newGame },
+	            'New Game'
+	          ),
+	          _react2.default.createElement(
+	            'h4',
+	            { className: 'title name font' },
+	            name,
+	            '\'s turn'
+	          ),
+	          _react2.default.createElement(
 	            'div',
-	            null,
-	            _react2.default.createElement(
-	              'button',
-	              { className: 'btn btn-warning', onClick: this.newGame },
-	              'New Game'
-	            ),
-	            _react2.default.createElement(
-	              'h4',
-	              null,
-	              name,
-	              '\'s turn'
-	            ),
+	            { className: 'fullwidth' },
 	            _react2.default.createElement(
 	              'div',
 	              { style: rotate, className: 'gameContainer' },
@@ -49369,17 +49372,13 @@
 	        null,
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'tablebackground' },
+	          null,
 	          _react2.default.createElement(
-	            'h1',
-	            null,
+	            'h2',
+	            { className: 'title' },
 	            'Mancala'
 	          ),
-	          _react2.default.createElement(
-	            'div',
-	            null,
-	            _react2.default.createElement(_GameBoardsDisplay2.default, { gameboards: this.state.gameboards })
-	          )
+	          _react2.default.createElement(_GameBoardsDisplay2.default, { gameboards: this.state.gameboards })
 	        )
 	      );
 	    }
