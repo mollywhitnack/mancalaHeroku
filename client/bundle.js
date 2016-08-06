@@ -39934,7 +39934,7 @@
 	    value: function initializeBoard(event) {
 	      //console.log('socket:', socket);
 	      event.preventDefault();
-	      console.log("initializeing Board");
+	      //console.log("initializeing Board")
 	      _GameBoardActions2.default.addNewGameBoard(this.state);
 	      window.location = '/gameBoards'; //${this.state.playersId}`;
 	    }
@@ -40047,10 +40047,6 @@
 	
 	var _style2 = _interopRequireDefault(_style);
 	
-	var _socket = __webpack_require__(271);
-	
-	var _socket2 = _interopRequireDefault(_socket);
-	
 	var _toastr = __webpack_require__(329);
 	
 	var _toastr2 = _interopRequireDefault(_toastr);
@@ -40062,6 +40058,9 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	//import ioClient from 'socket.io-client';
+	
 	
 	var GameBoard = function (_Component) {
 	  _inherits(GameBoard, _Component);
@@ -40079,7 +40078,7 @@
 	    _this.newGame = _this.newGame.bind(_this);
 	
 	    var host = location.origin.replace(/^http/, 'ws');
-	    var socket = _socket2.default.connect(host);
+	    //const socket = ioClient.connect(host)
 	    return _this;
 	  }
 	
@@ -40089,12 +40088,12 @@
 	      _GameBoardActions2.default.getGameBoard(this.props.gameboardID);
 	      _GameBoardStore2.default.startListening(this.onChange);
 	
-	      console.log("ioclient:", _socket2.default);
+	      //console.log("ioclient:", ioClient);
 	
-	      _socket2.default.on('connect', function () {
-	        console.log('new game');
-	        _socket2.default.emit('newGame');
-	      });
+	      /*ioClient.on('connect', function(){
+	        //console.log('new game');
+	        ioClient.emit('newGame')
+	      });*/
 	
 	      //console.log("GameBoardStore.getGameBoard(this.props.gameboardID):", GameBoardStore.getGameBoard(this.props.gameboardID))
 	      //console.log("game board id:",this.props.gameboardID )
@@ -40102,7 +40101,7 @@
 	  }, {
 	    key: 'onChange',
 	    value: function onChange() {
-	      console.log("change, set state to: ", _GameBoardStore2.default.getGameBoard(this.props.gameboardID));
+	      //console.log("change, set state to: ", GameBoardStore.getGameBoard(this.props.gameboardID) )
 	      this.setState({ gameboard: _GameBoardStore2.default.getGameBoard(this.props.gameboardID) });
 	      //console.log("GameBoardStore.getGameBoard(this.props.gameboardID):", GameBoardStore.getGameBoard(this.props.gameboardID))
 	    }
@@ -40127,8 +40126,9 @@
 	
 	      var stones = this.state.gameboard.gameboard.slice();
 	      var player = this.state.gameboard.currPlayer;
-	      console.log("stones:", stones);
-	      console.log('player:', player);
+	      //console.log("stones:", stones);
+	      //console.log('player:', player);
+	
 	
 	      var holeIndex = parseInt(event.target.id);
 	
@@ -40155,16 +40155,16 @@
 	      //add swal
 	      if (row0Count === 0) {
 	        var winner = 'player 0';
-	        console.log("---------winner: ", winner);
-	        console.log("---------score: ", stones[0]);
+	        //console.log("---------winner: ", winner);
+	        //console.log("---------score: ", stones[0]);
 	        _toastr2.default.success(this.state.gameboard.player0 + ' wins with', stones[7] + ' stones');
 	        stones = [0, 4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4];
 	        return;
 	      }
 	      if (row1Count === 0) {
 	        var _winner = 'player 1';
-	        console.log("---------winner: ", _winner);
-	        console.log("---------score: ", stones[7]);
+	        //console.log("---------winner: ", winner);
+	        //console.log("---------score: ", stones[7]);
 	        _toastr2.default.success(this.state.gameboard.player1 + ' wins with', stones[0] + ' stones');
 	        stones = [0, 4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4];
 	        return;
@@ -40174,7 +40174,7 @@
 	
 	        //skip oppositeplayers bucket
 	        if (index === 7 && player === true || index === 0 && player === false) {
-	          console.log("skip bucket: ", index);
+	          //console.log("skip bucket: ", index);
 	          index = (index + 13) % 14;
 	        }
 	
@@ -40184,8 +40184,8 @@
 	            //drop stone in hole
 	            stones[index]++;
 	            count++;
-	            console.log("index:", index);
-	            console.log("stones[index]", stones[index]);
+	            //console.log("index:", index);
+	            //console.log("stones[index]", stones[index]);
 	
 	            //if last stones lands in empty hole on your own side, collect pieces from opposite hole
 	            if (count === stonesInHand && stones[index] === 1) {
@@ -40215,10 +40215,10 @@
 	            //if stone doesn't land in your bucket go to next player
 	            if (count === stonesInHand) {
 	              if (index === 0 && player === true || index === 7 && player === false) {
-	                console.log("land in own bucket");
+	                //console.log("land in own bucket")
 	              } else {
 	                player = !player;
-	                console.log("switch to player: ", player);
+	                //console.log("switch to player: ", player)
 	              }
 	            }
 	
@@ -40234,7 +40234,7 @@
 	        currPlayer: player
 	      };
 	
-	      console.log("newgameboard:", newgameboard);
+	      //console.log("newgameboard:", newgameboard);
 	      _GameBoardActions2.default.updateGameBoard(newgameboard);
 	      //console.log("game" ,this.state.gameboard.gameboard);
 	      //console.log("this.state.gameboard.gameboard.currPlayer" ,this.state.gameboard.gameboard.currPlayer);
@@ -40242,7 +40242,7 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      console.log("this.state", this.state);
+	      //console.log("this.state" , this.state)
 	      if (this.state) {
 	
 	        var name = void 0;
@@ -40252,8 +40252,8 @@
 	          name = this.state.gameboard.player0;
 	        }
 	
-	        console.log("this.state", this.state);
-	        console.log('this.props', this.props);
+	        //console.log("this.state", this.state);
+	        //console.log('this.props', this.props);
 	        //console.log("this.state", this.state.gameboard.gameboard);
 	        //let gameboard = this.state.gameboard.gameboard;
 	
@@ -40384,7 +40384,7 @@
 	          //console.log('numballs: ', numballs, ' at i', i);
 	          var ballHtml = [];
 	          for (var k = 0; k < numballs; k++) {
-	            ballHtml.push(_react2.default.createElement(_BallDisplay2.default, { className: 'ballspan' }));
+	            ballHtml.push(_react2.default.createElement(_BallDisplay2.default, { key: k, className: 'ballspan' }));
 	          }
 	          ballstoDisplay.push(ballHtml);
 	          //console.log("ballstoDisplay", ballstoDisplay[i]);
@@ -40689,14 +40689,14 @@
 	  function AddGameBoardForm(props) {
 	    _classCallCheck(this, AddGameBoardForm);
 	
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AddGameBoardForm).call(this, props));
-	
-	    console.log("props", _this.props);
+	    //console.log("props", this.props)
 	
 	    /* this.state = {
 	       gameboard : [0,4,4,4,4,4,4,0,4,4,4,4,4,4],//new Array(14).fill(0,4,4,4,4,4,4,0,4,4,4,4,4,4),
 	       currPlayer: false
 	     }*/
+	
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AddGameBoardForm).call(this, props));
 	
 	    _this.initializeBoard = _this.initializeBoard.bind(_this);
 	    return _this;
@@ -40706,7 +40706,7 @@
 	    key: 'initializeBoard',
 	    value: function initializeBoard(event) {
 	      event.preventDefault();
-	      console.log("initializeing Board");
+	      //console.log("initializeing Board")
 	      //console.log("this.state", this.state);
 	      //console.log("add :", this.state.gameboard);
 	      _GameBoardActions2.default.addNewGameBoard();
@@ -48302,18 +48302,18 @@
 	    _API2.default.getAllGameBoards();
 	  },
 	  addNewGameBoard: function addNewGameBoard(players) {
-	    console.log("players: ", players);
+	    //console.log("players: ", players )
 	    _API2.default.addNewGameBoard(players);
 	  },
 	  deleteGameBoard: function deleteGameBoard(id) {
-	    console.log('delete by id');
+	    //console.log('delete by id')
 	    _API2.default.deleteGameboard(id);
 	  },
 	  getGameBoard: function getGameBoard(id) {
 	    _API2.default.getGameBoard(id);
 	  },
 	  updateGameBoard: function updateGameBoard(game) {
-	    console.log("update game:", game);
+	    //console.log("update game:", game)
 	    _API2.default.updateGameBoard(game);
 	  }
 	};
@@ -48362,7 +48362,7 @@
 	    });
 	  },
 	  updateGameBoard: function updateGameBoard(game) {
-	    console.log("Game: ", game);
+	    //console.log("Game: ", game);
 	    //console.log('game.gameboard', game.gameboard);
 	    //console.log('game.currPlayer', game.currPlayer);
 	    //console.log('game.gameboard', game.gameboard);
@@ -48376,7 +48376,7 @@
 	    }).then(function (res) {
 	      return res.json();
 	    }).then(function (data) {
-	      console.log("data:", data);
+	      //console.log("data:", data);
 	      _ServerActions2.default.receiveOneGameBoard(data); //same call as get origional gameboard (might be problem)
 	    });
 	  },
@@ -48386,7 +48386,7 @@
 	    }).then(function (response) {
 	      return response.json();
 	    }).then(function (data) {
-	      console.log(data);
+	      //console.log(data);
 	      _ServerActions2.default.receiveGameBoards(data);
 	    }).catch(function (err) {
 	      console.log(err);
@@ -48793,26 +48793,24 @@
 	  function GameBoardDisplay(props) {
 	    _classCallCheck(this, GameBoardDisplay);
 	
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(GameBoardDisplay).call(this, props));
-	
-	    console.log("THIS.PROPS\n", _this.props);
-	    return _this;
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(GameBoardDisplay).call(this, props));
+	    //console.log("THIS.PROPS\n", this.props);
 	  }
 	
 	  _createClass(GameBoardDisplay, [{
 	    key: 'render',
 	    value: function render() {
 	      var gameboards = this.props.gameboards;
-	
-	      console.log("\ngameboards:", gameboards);
+	      //console.log("\ngameboards:" ,gameboards)
 	
 	      //match gameboard to game room socketID
+	
 	      var display = gameboards.length && gameboards.map(function (gameboardID) {
 	        return _react2.default.createElement(_GameBoard2.default, { key: gameboardID, gameboardID: gameboardID });
 	      });
 	
-	      console.log('display', display);
-	      console.log('display', display.length - 1);
+	      //console.log('display', display);
+	      //console.log('display', display.length-1);
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -48930,7 +48928,7 @@
 	        case 'RECEIVE_ONE_GAMEBOARD':
 	          //__gameboards.push(action.gameboard);
 	          // __gameboardsbyid[gameboard._id] = action.gameboard;
-	          console.log("action.gameboard: ", action.gameboard);
+	          //console.log("action.gameboard: ", action.gameboard)
 	          __gameboardsbyid[action.gameboard._id] = action.gameboard;
 	          //__gameboards.push(action.gameboard._id);
 	          _this.emit('CHANGE');
@@ -49785,7 +49783,7 @@
 	
 	    _this.state = _getComponentState();
 	
-	    console.log("this.state in gameboards", _this.state);
+	    //console.log("this.state in gameboards", this.state);
 	    _this._onChange = _this._onChange.bind(_this);
 	    return _this;
 	  }
@@ -49795,12 +49793,12 @@
 	    value: function componentDidMount() {
 	      _GameBoardActions2.default.getAllGameBoards();
 	      _GameBoardStore2.default.startListening(this._onChange);
-	      console.log("after get", this.state.gameboards);
-	      socket = _socket2.default.connect();
+	      //console.log("after get", this.state.gameboards );
+	      //socket = ioClient.connect();
 	
-	      socket.on('newGame', function (data) {
-	        console.log('socket data:', data);
-	      });
+	      /*socket.on('newGame', function(data){ 
+	        //console.log('socket data:', data);
+	      }) */
 	    }
 	  }, {
 	    key: 'componentWillUnmount',
@@ -49811,7 +49809,8 @@
 	    key: '_onChange',
 	    value: function _onChange() {
 	      this.setState(_getComponentState());
-	      console.log("after on change", this.state.gameboards);
+	      //console.log("after on change", this.state.gameboards );
+	
 	    }
 	  }, {
 	    key: 'render',
