@@ -39909,6 +39909,7 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	//const uuid = require('uuid');
 	
 	var Dashboard = function (_Component) {
 	  _inherits(Dashboard, _Component);
@@ -39935,7 +39936,7 @@
 	      event.preventDefault();
 	      console.log("initializeing Board");
 	      _GameBoardActions2.default.addNewGameBoard(this.state);
-	      window.location = '/gameBoards';
+	      window.location = '/gameBoards'; //${this.state.playersId}`;
 	    }
 	  }, {
 	    key: 'render',
@@ -48809,11 +48810,13 @@
 	      var display = gameboards.length && gameboards.map(function (gameboardID) {
 	        return _react2.default.createElement(_GameBoard2.default, { key: gameboardID, gameboardID: gameboardID });
 	      });
-	      console.log(display[0]);
+	
+	      console.log('display', display);
+	      console.log('display', display.length - 1);
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        display[0] || 'No GameBoards To Display'
+	        display[display.length - 1] || 'No GameBoards To Display'
 	      );
 	    }
 	  }]);
