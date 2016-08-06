@@ -16,7 +16,7 @@ const app = express();
 
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/mancala');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/mancala');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
