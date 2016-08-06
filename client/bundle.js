@@ -12816,7 +12816,7 @@
 	
 	var _Dashboard2 = _interopRequireDefault(_Dashboard);
 	
-	var _GameBoards = __webpack_require__(329);
+	var _GameBoards = __webpack_require__(331);
 	
 	var _GameBoards2 = _interopRequireDefault(_GameBoards);
 	
@@ -40050,6 +40050,10 @@
 	
 	var _socket2 = _interopRequireDefault(_socket);
 	
+	var _toastr = __webpack_require__(329);
+	
+	var _toastr2 = _interopRequireDefault(_toastr);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -40116,11 +40120,9 @@
 	  }, {
 	    key: 'startingPos',
 	    value: function startingPos(event) {
-	      event.preventDefault();
-	      console.log("CLICKKKKKKKKK");
-	      //swal({   title: "Error!",   text: "Here's my error message!",   type: "error",   confirmButtonText: "Cool" });
 	
-	      console.log('this.state:', this.state);
+	      event.preventDefault();
+	      //swal({   title: "Error!",   text: "Here's my error message!",   type: "error",   confirmButtonText: "Cool" });
 	
 	      var stones = this.state.gameboard.gameboard.slice();
 	      var player = this.state.gameboard.currPlayer;
@@ -40135,6 +40137,37 @@
 	
 	      var count = 0;
 	      var index = (holeIndex + 13) % 14;
+	
+	      var row0Count = 0;
+	      var row1Count = 0;
+	
+	      for (var i = 0; i < 6; i++) {
+	        if (stones[i + 1] !== 0) {
+	          row0Count += stones[i + 1];
+	        }
+	        if (stones[i + 8] !== 0) {
+	          row1Count += stones[i + 8];
+	        }
+	      }
+	
+	      //if winner set gameover
+	      //add swal
+	      if (row0Count === 0) {
+	        var winner = 'player 0';
+	        console.log("---------winner: ", winner);
+	        console.log("---------score: ", stones[0]);
+	        _toastr2.default.success(this.state.gameboard.player0 + ' wins with', stones[7] + ' stones');
+	        stones = [0, 4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4];
+	        return;
+	      }
+	      if (row1Count === 0) {
+	        var _winner = 'player 1';
+	        console.log("---------winner: ", _winner);
+	        console.log("---------score: ", stones[7]);
+	        _toastr2.default.success(this.state.gameboard.player1 + ' wins with', stones[0] + ' stones');
+	        stones = [0, 4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4];
+	        return;
+	      }
 	
 	      while (count < stonesInHand) {
 	
@@ -40189,36 +40222,7 @@
 	            }
 	
 	            //check for win
-	            var row0Count = 0;
-	            var row1Count = 0;
 	
-	            for (var i = 0; i < 6; i++) {
-	              if (stones[i + 1] !== 0) {
-	                row0Count += stones[i + 1];
-	              }
-	              if (stones[i + 8] !== 0) {
-	                row1Count += stones[i + 8];
-	              }
-	            }
-	
-	            //if winner set gameover
-	            //add swal
-	            if (row0Count === 0) {
-	              var winner = 'player 0';
-	              console.log("---------winner: ", winner);
-	              console.log("---------score: ", stones[0]);
-	              alert(this.state.gameboard.player0, 'wins with ', stones[7], 'stones');
-	              stones = [0, 4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4];
-	              break;
-	            } else if (row1Count === 0) {
-	              var _winner = 'player 1';
-	              console.log("---------winner: ", _winner);
-	              console.log("---------score: ", stones[7]);
-	              alert(this.state.gameboard.player1, 'wins with ', stones[0], 'stones');
-	              stones = [0, 4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4];
-	
-	              break;
-	            }
 	            index = (index + 13) % 14;
 	          }
 	      }
@@ -49278,6 +49282,448 @@
 
 /***/ },
 /* 329 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
+	 * Toastr
+	 * Copyright 2012-2015
+	 * Authors: John Papa, Hans Fjällemark, and Tim Ferrell.
+	 * All Rights Reserved.
+	 * Use, reproduction, distribution, and modification of this code is subject to the terms and
+	 * conditions of the MIT license, available at http://www.opensource.org/licenses/mit-license.php
+	 *
+	 * ARIA Support: Greta Krafsig
+	 *
+	 * Project: https://github.com/CodeSeven/toastr
+	 */
+	/* global define */
+	; (function (define) {
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(14)], __WEBPACK_AMD_DEFINE_RESULT__ = function ($) {
+	        return (function () {
+	            var $container;
+	            var listener;
+	            var toastId = 0;
+	            var toastType = {
+	                error: 'error',
+	                info: 'info',
+	                success: 'success',
+	                warning: 'warning'
+	            };
+	
+	            var toastr = {
+	                clear: clear,
+	                remove: remove,
+	                error: error,
+	                getContainer: getContainer,
+	                info: info,
+	                options: {},
+	                subscribe: subscribe,
+	                success: success,
+	                version: '2.1.2',
+	                warning: warning
+	            };
+	
+	            var previousToast;
+	
+	            return toastr;
+	
+	            ////////////////
+	
+	            function error(message, title, optionsOverride) {
+	                return notify({
+	                    type: toastType.error,
+	                    iconClass: getOptions().iconClasses.error,
+	                    message: message,
+	                    optionsOverride: optionsOverride,
+	                    title: title
+	                });
+	            }
+	
+	            function getContainer(options, create) {
+	                if (!options) { options = getOptions(); }
+	                $container = $('#' + options.containerId);
+	                if ($container.length) {
+	                    return $container;
+	                }
+	                if (create) {
+	                    $container = createContainer(options);
+	                }
+	                return $container;
+	            }
+	
+	            function info(message, title, optionsOverride) {
+	                return notify({
+	                    type: toastType.info,
+	                    iconClass: getOptions().iconClasses.info,
+	                    message: message,
+	                    optionsOverride: optionsOverride,
+	                    title: title
+	                });
+	            }
+	
+	            function subscribe(callback) {
+	                listener = callback;
+	            }
+	
+	            function success(message, title, optionsOverride) {
+	                return notify({
+	                    type: toastType.success,
+	                    iconClass: getOptions().iconClasses.success,
+	                    message: message,
+	                    optionsOverride: optionsOverride,
+	                    title: title
+	                });
+	            }
+	
+	            function warning(message, title, optionsOverride) {
+	                return notify({
+	                    type: toastType.warning,
+	                    iconClass: getOptions().iconClasses.warning,
+	                    message: message,
+	                    optionsOverride: optionsOverride,
+	                    title: title
+	                });
+	            }
+	
+	            function clear($toastElement, clearOptions) {
+	                var options = getOptions();
+	                if (!$container) { getContainer(options); }
+	                if (!clearToast($toastElement, options, clearOptions)) {
+	                    clearContainer(options);
+	                }
+	            }
+	
+	            function remove($toastElement) {
+	                var options = getOptions();
+	                if (!$container) { getContainer(options); }
+	                if ($toastElement && $(':focus', $toastElement).length === 0) {
+	                    removeToast($toastElement);
+	                    return;
+	                }
+	                if ($container.children().length) {
+	                    $container.remove();
+	                }
+	            }
+	
+	            // internal functions
+	
+	            function clearContainer (options) {
+	                var toastsToClear = $container.children();
+	                for (var i = toastsToClear.length - 1; i >= 0; i--) {
+	                    clearToast($(toastsToClear[i]), options);
+	                }
+	            }
+	
+	            function clearToast ($toastElement, options, clearOptions) {
+	                var force = clearOptions && clearOptions.force ? clearOptions.force : false;
+	                if ($toastElement && (force || $(':focus', $toastElement).length === 0)) {
+	                    $toastElement[options.hideMethod]({
+	                        duration: options.hideDuration,
+	                        easing: options.hideEasing,
+	                        complete: function () { removeToast($toastElement); }
+	                    });
+	                    return true;
+	                }
+	                return false;
+	            }
+	
+	            function createContainer(options) {
+	                $container = $('<div/>')
+	                    .attr('id', options.containerId)
+	                    .addClass(options.positionClass)
+	                    .attr('aria-live', 'polite')
+	                    .attr('role', 'alert');
+	
+	                $container.appendTo($(options.target));
+	                return $container;
+	            }
+	
+	            function getDefaults() {
+	                return {
+	                    tapToDismiss: true,
+	                    toastClass: 'toast',
+	                    containerId: 'toast-container',
+	                    debug: false,
+	
+	                    showMethod: 'fadeIn', //fadeIn, slideDown, and show are built into jQuery
+	                    showDuration: 300,
+	                    showEasing: 'swing', //swing and linear are built into jQuery
+	                    onShown: undefined,
+	                    hideMethod: 'fadeOut',
+	                    hideDuration: 1000,
+	                    hideEasing: 'swing',
+	                    onHidden: undefined,
+	                    closeMethod: false,
+	                    closeDuration: false,
+	                    closeEasing: false,
+	
+	                    extendedTimeOut: 1000,
+	                    iconClasses: {
+	                        error: 'toast-error',
+	                        info: 'toast-info',
+	                        success: 'toast-success',
+	                        warning: 'toast-warning'
+	                    },
+	                    iconClass: 'toast-info',
+	                    positionClass: 'toast-top-right',
+	                    timeOut: 5000, // Set timeOut and extendedTimeOut to 0 to make it sticky
+	                    titleClass: 'toast-title',
+	                    messageClass: 'toast-message',
+	                    escapeHtml: false,
+	                    target: 'body',
+	                    closeHtml: '<button type="button">&times;</button>',
+	                    newestOnTop: true,
+	                    preventDuplicates: false,
+	                    progressBar: false
+	                };
+	            }
+	
+	            function publish(args) {
+	                if (!listener) { return; }
+	                listener(args);
+	            }
+	
+	            function notify(map) {
+	                var options = getOptions();
+	                var iconClass = map.iconClass || options.iconClass;
+	
+	                if (typeof (map.optionsOverride) !== 'undefined') {
+	                    options = $.extend(options, map.optionsOverride);
+	                    iconClass = map.optionsOverride.iconClass || iconClass;
+	                }
+	
+	                if (shouldExit(options, map)) { return; }
+	
+	                toastId++;
+	
+	                $container = getContainer(options, true);
+	
+	                var intervalId = null;
+	                var $toastElement = $('<div/>');
+	                var $titleElement = $('<div/>');
+	                var $messageElement = $('<div/>');
+	                var $progressElement = $('<div/>');
+	                var $closeElement = $(options.closeHtml);
+	                var progressBar = {
+	                    intervalId: null,
+	                    hideEta: null,
+	                    maxHideTime: null
+	                };
+	                var response = {
+	                    toastId: toastId,
+	                    state: 'visible',
+	                    startTime: new Date(),
+	                    options: options,
+	                    map: map
+	                };
+	
+	                personalizeToast();
+	
+	                displayToast();
+	
+	                handleEvents();
+	
+	                publish(response);
+	
+	                if (options.debug && console) {
+	                    console.log(response);
+	                }
+	
+	                return $toastElement;
+	
+	                function escapeHtml(source) {
+	                    if (source == null)
+	                        source = "";
+	
+	                    return new String(source)
+	                        .replace(/&/g, '&amp;')
+	                        .replace(/"/g, '&quot;')
+	                        .replace(/'/g, '&#39;')
+	                        .replace(/</g, '&lt;')
+	                        .replace(/>/g, '&gt;');
+	                }
+	
+	                function personalizeToast() {
+	                    setIcon();
+	                    setTitle();
+	                    setMessage();
+	                    setCloseButton();
+	                    setProgressBar();
+	                    setSequence();
+	                }
+	
+	                function handleEvents() {
+	                    $toastElement.hover(stickAround, delayedHideToast);
+	                    if (!options.onclick && options.tapToDismiss) {
+	                        $toastElement.click(hideToast);
+	                    }
+	
+	                    if (options.closeButton && $closeElement) {
+	                        $closeElement.click(function (event) {
+	                            if (event.stopPropagation) {
+	                                event.stopPropagation();
+	                            } else if (event.cancelBubble !== undefined && event.cancelBubble !== true) {
+	                                event.cancelBubble = true;
+	                            }
+	                            hideToast(true);
+	                        });
+	                    }
+	
+	                    if (options.onclick) {
+	                        $toastElement.click(function (event) {
+	                            options.onclick(event);
+	                            hideToast();
+	                        });
+	                    }
+	                }
+	
+	                function displayToast() {
+	                    $toastElement.hide();
+	
+	                    $toastElement[options.showMethod](
+	                        {duration: options.showDuration, easing: options.showEasing, complete: options.onShown}
+	                    );
+	
+	                    if (options.timeOut > 0) {
+	                        intervalId = setTimeout(hideToast, options.timeOut);
+	                        progressBar.maxHideTime = parseFloat(options.timeOut);
+	                        progressBar.hideEta = new Date().getTime() + progressBar.maxHideTime;
+	                        if (options.progressBar) {
+	                            progressBar.intervalId = setInterval(updateProgress, 10);
+	                        }
+	                    }
+	                }
+	
+	                function setIcon() {
+	                    if (map.iconClass) {
+	                        $toastElement.addClass(options.toastClass).addClass(iconClass);
+	                    }
+	                }
+	
+	                function setSequence() {
+	                    if (options.newestOnTop) {
+	                        $container.prepend($toastElement);
+	                    } else {
+	                        $container.append($toastElement);
+	                    }
+	                }
+	
+	                function setTitle() {
+	                    if (map.title) {
+	                        $titleElement.append(!options.escapeHtml ? map.title : escapeHtml(map.title)).addClass(options.titleClass);
+	                        $toastElement.append($titleElement);
+	                    }
+	                }
+	
+	                function setMessage() {
+	                    if (map.message) {
+	                        $messageElement.append(!options.escapeHtml ? map.message : escapeHtml(map.message)).addClass(options.messageClass);
+	                        $toastElement.append($messageElement);
+	                    }
+	                }
+	
+	                function setCloseButton() {
+	                    if (options.closeButton) {
+	                        $closeElement.addClass('toast-close-button').attr('role', 'button');
+	                        $toastElement.prepend($closeElement);
+	                    }
+	                }
+	
+	                function setProgressBar() {
+	                    if (options.progressBar) {
+	                        $progressElement.addClass('toast-progress');
+	                        $toastElement.prepend($progressElement);
+	                    }
+	                }
+	
+	                function shouldExit(options, map) {
+	                    if (options.preventDuplicates) {
+	                        if (map.message === previousToast) {
+	                            return true;
+	                        } else {
+	                            previousToast = map.message;
+	                        }
+	                    }
+	                    return false;
+	                }
+	
+	                function hideToast(override) {
+	                    var method = override && options.closeMethod !== false ? options.closeMethod : options.hideMethod;
+	                    var duration = override && options.closeDuration !== false ?
+	                        options.closeDuration : options.hideDuration;
+	                    var easing = override && options.closeEasing !== false ? options.closeEasing : options.hideEasing;
+	                    if ($(':focus', $toastElement).length && !override) {
+	                        return;
+	                    }
+	                    clearTimeout(progressBar.intervalId);
+	                    return $toastElement[method]({
+	                        duration: duration,
+	                        easing: easing,
+	                        complete: function () {
+	                            removeToast($toastElement);
+	                            if (options.onHidden && response.state !== 'hidden') {
+	                                options.onHidden();
+	                            }
+	                            response.state = 'hidden';
+	                            response.endTime = new Date();
+	                            publish(response);
+	                        }
+	                    });
+	                }
+	
+	                function delayedHideToast() {
+	                    if (options.timeOut > 0 || options.extendedTimeOut > 0) {
+	                        intervalId = setTimeout(hideToast, options.extendedTimeOut);
+	                        progressBar.maxHideTime = parseFloat(options.extendedTimeOut);
+	                        progressBar.hideEta = new Date().getTime() + progressBar.maxHideTime;
+	                    }
+	                }
+	
+	                function stickAround() {
+	                    clearTimeout(intervalId);
+	                    progressBar.hideEta = 0;
+	                    $toastElement.stop(true, true)[options.showMethod](
+	                        {duration: options.showDuration, easing: options.showEasing}
+	                    );
+	                }
+	
+	                function updateProgress() {
+	                    var percentage = ((progressBar.hideEta - (new Date().getTime())) / progressBar.maxHideTime) * 100;
+	                    $progressElement.width(percentage + '%');
+	                }
+	            }
+	
+	            function getOptions() {
+	                return $.extend({}, getDefaults(), toastr.options);
+	            }
+	
+	            function removeToast($toastElement) {
+	                if (!$container) { $container = getContainer(); }
+	                if ($toastElement.is(':visible')) {
+	                    return;
+	                }
+	                $toastElement.remove();
+	                $toastElement = null;
+	                if ($container.children().length === 0) {
+	                    $container.remove();
+	                    previousToast = undefined;
+	                }
+	            }
+	
+	        })();
+	    }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	}(__webpack_require__(330)));
+
+
+/***/ },
+/* 330 */
+/***/ function(module, exports) {
+
+	module.exports = function() { throw new Error("define cannot be used indirect"); };
+
+
+/***/ },
+/* 331 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
